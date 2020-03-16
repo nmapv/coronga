@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      COVID-19
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid id="container">
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-icon name="bug-outline" class="icon-card"></ion-icon>
+          <ion-card-content>
+            <ion-card-title>
+              Confirmed - {{confirmed}} ({{percent_confirmed}}%)
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-icon name="fitness-outline" class="icon-card"></ion-icon>
+          <ion-card-content>
+            <ion-card-title>
+              Recovered - {{recovered}} ({{percent_recovered}}%)
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-icon name="skull-outline" class="icon-card"></ion-icon>
+          <ion-card-content>
+            <ion-card-title>
+              Deaths - {{deaths}} ({{percent_deaths}}%)
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid id="container">
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Number of confirmed per</ion-card-subtitle>
+            <ion-card-title>COUNTRY</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #chartConfirmed></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Number of recoverd per</ion-card-subtitle>
+            <ion-card-title>COUNTRY</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #chartRecoverd></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Number of deaths per</ion-card-subtitle>
+            <ion-card-title>COUNTRY</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #chartDeaths></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
