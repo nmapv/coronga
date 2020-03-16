@@ -9,9 +9,9 @@ import { Chart } from 'chart.js';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  @ViewChild('chartConfirmed') chartConfirmed;
-  @ViewChild('chartRecoverd') chartRecoverd;
-  @ViewChild('chartDeaths') chartDeaths;
+  @ViewChild('chartConfirmed', null) chartConfirmed;
+  @ViewChild('chartRecoverd', null) chartRecoverd;
+  @ViewChild('chartDeaths', null) chartDeaths;
   public confirmed: number = 0;
   public recovered: number = 0;
   public deaths: number = 0;
@@ -36,17 +36,7 @@ export class HomePage {
     this.http.get(this.url, {})
       .subscribe(
         data => {
-          this.confirmed = data.confirmed.latest;
-          this.recovered = data.recovered.latest;
-          this.deaths = data.deaths.latest;
-
-          this.percent_confirmed = Math.round((this.confirmed / 7700000000 * 100) * 1000) / 1000;
-          this.percent_recovered = Math.round((this.recovered / this.confirmed * 100) * 10) / 10;
-          this.percent_deaths = Math.round((this.deaths / this.confirmed * 100) * 10) / 10;
-
-          this.createBarChart(data);
-
-          console.log(data);
+          this.configurePage(data);
         },
         err => { console.log(err); },
         () => { this.loading.dismiss(); }
@@ -55,7 +45,15 @@ export class HomePage {
 
 
 
-  createBarChart(data) {
+  configurePage(data) {
+    this.confirmed = data.confirmed.latest;
+    this.recovered = data.recovered.latest;
+    this.deaths = data.deaths.latest;
+
+    this.percent_confirmed = Math.round((this.confirmed / 7700000000 * 100) * 1000) / 1000;
+    this.percent_recovered = Math.round((this.recovered / this.confirmed * 100) * 10) / 10;
+    this.percent_deaths = Math.round((this.deaths / this.confirmed * 100) * 10) / 10;
+
     new Chart(this.chartConfirmed.nativeElement, {
       type: 'bar',
       data: {
